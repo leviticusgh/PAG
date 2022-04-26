@@ -1,0 +1,26 @@
+options.toHide.hide();
+                                    options.complete();
+                                }
+                            });
+                    }
+                });
+
+                $(window).resize(function () {
+                    $("#accordion").accordion("resize");
+                });
+
+                // Notify the websearch iframe to set focus in the search box
+                $('#accordion').on('accordionchange', function (event, ui) {
+                    if (ui.newContent.attr('id') == "websearch") {
+                        var search = document.getElementById("websearch").contentWindow;
+                        search.postMessage("activated", "*");
+                    }
+                });
+            }
+        }]);
+    }
+    else {
+
+        $('.header, .header.ui-state-active, iframe').css('display', 'none');
+        if (Modernizr.touch) {
+            $('iframe').attr('scrol
